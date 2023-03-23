@@ -15,7 +15,7 @@ namespace HangFire_Demo.Controllers
         [Route("[action]")]
         public IActionResult SetWelcome()
         {
-            var jobId = BackgroundJob.Enqueue(()=>sayMessage("Hello!"));
+            var jobId = BackgroundJob.Enqueue(()=>sayMessage("Hello Hackathon From Ipass!"));
             return Ok($"JobId {jobId} has been sent");
         }
 
@@ -24,7 +24,7 @@ namespace HangFire_Demo.Controllers
         [Route("[action]")]
         public IActionResult Discount()
         {
-            var jobId = BackgroundJob.Schedule(() => sayMessage("Hello!"),TimeSpan.FromSeconds(20));
+            var jobId = BackgroundJob.Schedule(() => sayMessage("Hello Hackathon!"),TimeSpan.FromSeconds(20));
             return Ok($"JobId {jobId} as Discount has been sent");
         }
 
@@ -42,8 +42,8 @@ namespace HangFire_Demo.Controllers
         [Route("[action]")]
         public IActionResult Confirm()
         {
-            var OriginalJob = BackgroundJob.Schedule(() => sayMessage("Hello!"), TimeSpan.FromSeconds(20));
-            var jobId = BackgroundJob.ContinueJobWith(OriginalJob, ()=> sayMessage("You were unsubscribed!"));
+            var OriginalJob = BackgroundJob.Schedule(() => sayMessage("Hello Hackathon!"), TimeSpan.FromSeconds(20));
+            var jobId = BackgroundJob.ContinueJobWith(OriginalJob, ()=> sayMessage("Hackathon Testing!"));
             return Ok($"JobId {jobId} as Confirmation has been sent");
         }
 

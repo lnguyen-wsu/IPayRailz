@@ -9,12 +9,20 @@ namespace HangFire_Demo.Controllers
     [ApiController]
     public class PayRailzController : ControllerBase
     {
+        // Fire and forget 
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult SetWelcome()
+        {
+            var jobId = BackgroundJob.Enqueue(() => sayMessage("Hello Hackathon From PayRailz!"));
+            return Ok($"JobId {jobId} has been sent");
+        }
         // Continuous Jobs
         [HttpPost]
         [Route("[action]")]
         public IActionResult Confirm()
         {
-            var OriginalJob = BackgroundJob.Schedule(() => sayMessage("Hello!"), TimeSpan.FromSeconds(20));
+            var OriginalJob = BackgroundJob.Schedule(() => sayMessage("Hello Hackathon!"), TimeSpan.FromSeconds(20));
             var jobId = BackgroundJob.ContinueJobWith(OriginalJob, () => sayMessage("You were unsubscribed!"));
             return Ok($"JobId {jobId} as Confirmation has been sent");
         }
