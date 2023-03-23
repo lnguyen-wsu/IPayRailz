@@ -33,8 +33,8 @@ namespace HangFire_Demo.Controllers
         [Route("[action]")]
         public IActionResult DataBaseUpdate()
         {
-            RecurringJob.AddOrUpdate(() => sayMessage("Hello!"), Cron.Minutely);
-            return Ok($"JobId as Discount has been sent");
+            RecurringJob.AddOrUpdate(() => sayMessage("Ipass Job update ! "), Cron.Minutely);
+            return Ok($"JobId Ipass has been sent");
         }
 
         // Continuous Jobs

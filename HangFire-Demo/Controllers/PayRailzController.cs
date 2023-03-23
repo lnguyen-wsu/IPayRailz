@@ -19,6 +19,15 @@ namespace HangFire_Demo.Controllers
             return Ok($"JobId {jobId} as Confirmation has been sent");
         }
 
+        // Recurring Jobs
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult DataBaseUpdate()
+        {
+            RecurringJob.AddOrUpdate(() => sayMessage(" Payrailz Job update ! "), Cron.Minutely);
+            return Ok($"JobId Payrailz has been sent");
+        }
+
         public void sayMessage(string v) => Console.WriteLine(v);
     }
 }
